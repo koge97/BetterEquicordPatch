@@ -43,7 +43,7 @@ os.system("go mod tidy")
 os.system("set CGO_ENABLED=0")
 os.system("set GOOS=windows")
 os.system("set GOARCH=amd64")
-os.system(f"go build -ldflags=\"-H=windowsgui -X vencordinstaller.pyBranch='{branch}' -X vencordinstaller.pyOpenAsar='{openasar}' -X vencordinstaller.pySendSuccessNotifications='{send_success_notifications}'\" --tags cli")
+os.system(f"go build -ldflags=\"-H=windowsgui -X main.pyBranch={branch} -X main.pyOpenAsar={str(openasar).lower()} -X main.pySendSuccessNotifications='{str(send_success_notifications).lower()}'\" --tags cli")
 if os.path.exists(f"C:/Users/{getpass.getuser()}/AppData/Local/bettervencordpatch/vencordinstaller.exe"):
     os.remove(f"C:/Users/{getpass.getuser()}/AppData/Local/bettervencordpatch/vencordinstaller.exe")
 os.rename("vencordinstaller.exe", f"C:/Users/{getpass.getuser()}/AppData/Local/bettervencordpatch/vencordinstaller.exe")
@@ -52,9 +52,9 @@ print("done")
 if use_autopatch:
     print("Building auto-patch binary...", end=" ", flush=True)
     os.system("go mod tidy")
-    os.system(f"go build -ldflags=\"-H=windowsgui -X vencordinstaller.discordBranchSuffix='{branch_suffixes[branch]}'\" --tags avp_win -o autovencordpatch.exe")
-    # debug
-    # os.system(f"go build -ldflags=\"-X vencordinstaller.discordBranchSuffix='{branch_suffixes[branch]}'\" --tags avp_win -o autovencordpatch.exe")
+    os.system(f"go build -ldflags=\"-H=windowsgui -X main.discordBranchSuffix={branch_suffixes[branch]}\" --tags avp_win -o autovencordpatch.exe")
+    # uncomment this line and comment the line above to see autopatcher output
+    # os.system(f"go build -ldflags=\"-X main.discordBranchSuffix={branch_suffixes[branch]}\" --tags avp_win -o autovencordpatch.exe")
     os.system("taskkill /f /im autovencordpatch.exe >NUL 2>&1")
     if os.path.exists(f"C:/Users/{getpass.getuser()}/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/autovencordpatch.exe"):
         os.remove(f"C:/Users/{getpass.getuser()}/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/autovencordpatch.exe")

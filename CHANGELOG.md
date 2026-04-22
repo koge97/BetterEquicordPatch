@@ -1,3 +1,6 @@
+### Version 0.4.1
+- Fixed an issue where injected variables (such as branch, sending success notifications, and OpenAsar installation) wouldn't take effect even if their respective options were changed
+
 ### Version 0.4.0
 - Attempted to fix Windows auto-patching
     - The autopatcher now scans for Discord.ico updates, since this file always gets overwritten when an update occurs
