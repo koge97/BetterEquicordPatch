@@ -35,16 +35,10 @@ for dir in ["./autopatch/" if use_autopatch else "./installer/", "./installer/"]
         exit()
 print("done")
 
-discords = {
-    "stable": "Discord.app",
-    "ptb": "Discord PTB.app",
-    "canary": "Discord Canary.app"
-}
-
 os.chdir("./installer/")
 build_vi = f"""
 go mod tidy
-CGO_ENABLED=0 go build -ldflags=\"-X main.pyBranch={branch} -X main.pyOpenAsar={str(openasar).lower()} -X main.pySendSuccessNotifications={str(send_success_notifications).lower()}\" --tags cli
+CGO_ENABLED=0 go build -ldflags=\"-X main.branch={branch} -X main.patchOpenAsar={str(openasar).lower()} -X main.sendSuccessNotifications={str(send_success_notifications).lower()}\" --tags cli
 mkdir -p VencordInstaller.app/Contents/MacOS
 mkdir -p VencordInstaller.app/Contents/Resources
 cp macos/Info.plist VencordInstaller.app/Contents/Info.plist
@@ -61,7 +55,7 @@ if use_autopatch:
     print("Building auto-patch binary...", end=" ", flush=True)
     build_avp = f"""
     go mod tidy
-    CGO_ENABLED=0 go build -ldflags=\"-X main.discordAppName={discords[branch]}\" --tags avp_macos -o autovencordpatch
+    CGO_ENABLED=0 go build -ldflags=\"-X main.branch={branch}\" --tags avp_macos -o autovencordpatch
     chmod +x autovencordpatch
     mv autovencordpatch ../VencordInstaller.app/Contents/Resources/autovencordpatch
     """

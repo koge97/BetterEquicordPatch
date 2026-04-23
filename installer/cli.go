@@ -37,9 +37,9 @@ func isTrue(s string) bool {
 	return s == "true"
 }
 
-var pyBranch = "stable"
-var pyOpenAsar = "false"
-var pySendSuccessNotifications = "true"
+var branch = "stable"
+var patchOpenAsar = "false"
+var sendSuccessNotifications = "true"
 
 func main() {
 	InitGithubDownloader()
@@ -49,17 +49,17 @@ func main() {
 	flag.Bool("debug", false, "Enable debug info")
 
 	var versionFlag = flag.Bool("version", false, "View the program version")
-	var installFlag = flag.Bool("install", !isTrue(pyOpenAsar), "Install Vencord")
+	var installFlag = flag.Bool("install", !isTrue(patchOpenAsar), "Install Vencord")
 	var updateFlag = flag.Bool("repair", false, "Repair Vencord")
 	var uninstallFlag = flag.Bool("uninstall", false, "Uninstall Vencord")
-	var installOpenAsarFlag = flag.Bool("install-openasar", isTrue(pyOpenAsar), "Install OpenAsar")
+	var installOpenAsarFlag = flag.Bool("install-openasar", isTrue(patchOpenAsar), "Install OpenAsar")
 	var uninstallOpenAsarFlag = flag.Bool("uninstall-openasar", false, "Uninstall OpenAsar")
 	var locationFlag = flag.String("location", "", "The location of the Discord install to modify")
-	var branchFlag = flag.String("branch", pyBranch, "The branch of Discord to modify [auto|stable|ptb|canary]")
+	var branchFlag = flag.String("branch", branch, "The branch of Discord to modify [auto|stable|ptb|canary]")
 	flag.Parse()
 
 	if *versionFlag {
-		fmt.Println("BetterVencordPatch v0.4.1")
+		fmt.Println("BetterVencordPatch v0.4.2")
 		fmt.Println("Using the Vencord Installer CLI (v1.4.0, modified)")
 		fmt.Println("Modified by @introvertednoob to install Vencord without user interaction")
 		fmt.Println("\nCopyright (C) 2023 Vendicated and Vencord contributors")
@@ -124,7 +124,7 @@ func main() {
 }
 
 func exitSuccess() {
-	if isTrue(pySendSuccessNotifications) == true {
+	if isTrue(sendSuccessNotifications) == true {
 		if runtime.GOOS == "darwin" {
 			notify("BetterVencordPatch", "Successfully installed Vencord!")
 		} else {

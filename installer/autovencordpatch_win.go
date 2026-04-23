@@ -18,7 +18,12 @@ const (
 	checkInterval = 1 * time.Second
 )
 
-var discordBranchSuffix = ""
+var suffixes = map[string]string{
+	"stable": "",
+	"ptb":    "PTB",
+	"canary": "Canary",
+}
+var branch = "stable"
 
 func runInstaller() {
 	cmd := exec.Command(filepath.Join(os.Getenv("LOCALAPPDATA"), "bettervencordpatch/vencordinstaller.exe"))
@@ -45,7 +50,7 @@ func killDiscord() {
 }
 
 func startDiscord() {
-	cmd := exec.Command(filepath.Join(os.Getenv("LOCALAPPDATA"), "Discord"+discordBranchSuffix+"/Update.exe"), "--processStart", "Discord.exe")
+	cmd := exec.Command(filepath.Join(os.Getenv("LOCALAPPDATA"), "Discord"+suffixes[branch]+"/Update.exe"), "--processStart", "Discord.exe")
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		HideWindow:    true,
 		CreationFlags: windows.CREATE_NO_WINDOW,
@@ -59,7 +64,7 @@ func startDiscord() {
 func main() {
 	var lastUpdate time.Time
 
-	discordICON := filepath.Clean(filepath.Join(os.Getenv("LOCALAPPDATA"), "Discord"+discordBranchSuffix+"/app.ico"))
+	discordICON := filepath.Clean(filepath.Join(os.Getenv("LOCALAPPDATA"), "Discord"+suffixes[branch]+"/app.ico"))
 	fmt.Println(discordICON)
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {

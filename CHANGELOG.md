@@ -1,3 +1,8 @@
+### Version 0.4.2
+- Refactored Vencord installer arguments to remove the prefix "py"
+- Discord branch suffixes are now stored within .go files (Windows)
+- Discord app names are now stored within .go files (macOS)
+
 ### Version 0.4.1
 - Fixed an issue where injected variables (such as branch, sending success notifications, and OpenAsar installation) wouldn't take effect even if their respective options were changed
 

@@ -20,7 +20,7 @@ def build(openasar, op):
 
     build_vi = f"""
     go mod tidy
-    CGO_ENABLED=0{" GOOS=windows GOARCH=amd64 " if op == "Windows" else " "}go build -ldflags=\"{"-H=windowsgui " if op == "Windows" else ""}-X main.pyBranch={branch} -X main.pyOpenAsar={str(openasar).lower()} -X main.pySendSuccessNotifications={str(send_success_notifications).lower()}\" --tags cli
+    CGO_ENABLED=0{" GOOS=windows GOARCH=amd64 " if op == "Windows" else " "}go build -ldflags=\"{"-H=windowsgui " if op == "Windows" else ""}-X main.branch={branch} -X main.patchOpenAsar={str(openasar).lower()} -X main.sendSuccessNotifications={str(send_success_notifications).lower()}\" --tags cli
     """
     build_vi_darwin = """
     mkdir -p VencordInstaller.app/Contents/MacOS

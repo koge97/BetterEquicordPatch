@@ -11,9 +11,15 @@ import (
 	"github.com/fsnotify/fsnotify"
 )
 
-var discordAppName = "Discord.app"
-var discordJSON = "/Applications/" + discordAppName + "/Contents/Resources/build_info.json"
-var discordASAR = "/Applications/" + discordAppName + "/Contents/Resources/app.asar"
+var apps = map[string]string{
+	"stable": "Discord.app",
+	"ptb":    "Discord PTB.app",
+	"canary": "Discord Canary.app",
+}
+var branch = "stable"
+
+var discordJSON = "/Applications/" + apps[branch] + "/Contents/Resources/build_info.json"
+var discordASAR = "/Applications/" + apps[branch] + "/Contents/Resources/app.asar"
 
 const (
 	vencordApp    = "/Applications/VencordInstaller.app"
