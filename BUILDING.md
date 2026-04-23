@@ -12,10 +12,10 @@ These arguments can be used to customize the Vencord installer:
     - Possible values: stable | ptb | canary
 - USE_OPEN_ASAR: If the installer will patch OpenAsar
     - Type: boolean
-    - Possible values: true/false
+    - Possible values: true | false
 - SEND_SUCCESS_NOTIFICATIONS: If the installer will send a success notification on success
     - Type: boolean
-    - Possible values: true/false
+    - Possible values: true | false
 
 ## Building the Auto-patcher
 You can use these commands to build the auto-patcher (arguments explained below):
