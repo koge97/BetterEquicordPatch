@@ -1,4 +1,5 @@
 ### Version 0.4.2
+- Fixed an issue where Vencord wouldn't patch when choosing to patch OpenAsar
 - Refactored Vencord installer arguments to remove the prefix "py"
 - Discord branch suffixes are now stored within .go files (Windows)
 - Discord app names are now stored within .go files (macOS)

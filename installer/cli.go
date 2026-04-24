@@ -104,6 +104,7 @@ func main() {
 			die("OpenAsar is not installed.")
 		}
 	} else if installOpenAsar {
+		errSilent = PromptDiscord("patch", *locationFlag, *branchFlag).patch()
 		discord := PromptDiscord("patch", *locationFlag, *branchFlag)
 		if !discord.IsOpenAsar() {
 			err = discord.InstallOpenAsar()
@@ -126,9 +127,18 @@ func main() {
 func exitSuccess() {
 	if isTrue(sendSuccessNotifications) == true {
 		if runtime.GOOS == "darwin" {
-			notify("BetterVencordPatch", "Successfully installed Vencord!")
+			if installOpenAsar {
+				notify("BetterVencordPatch", "Successfully installed Vencord + OpenAsar!")
+			} else {
+				notify("BetterVencordPatch", "Successfully installed Vencord!")
+			}
 		} else {
-			notify("Success", "Successfully installed Vencord!")
+		if runtime.GOOS == "darwin" {
+			if installOpenAsar {
+				notify("Success", "Successfully installed Vencord + OpenAsar!")
+			} else {
+				notify("Success", "Successfully installed Vencord!")
+			}
 		}
 	}
 	color.HiGreen("Success!")
