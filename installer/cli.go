@@ -121,10 +121,14 @@ func main() {
 		exitFailure(errSilent.Error())
 	}
 
-	exitSuccess()
+	if installOpenAsar {
+		exitSuccess(true)
+	} else {
+		exitSuccess(false)
+	}
 }
 
-func exitSuccess() {
+func exitSuccess(installOpenAsar bool) {
 	if isTrue(sendSuccessNotifications) == true {
 		if runtime.GOOS == "darwin" {
 			if installOpenAsar {
@@ -133,7 +137,6 @@ func exitSuccess() {
 				notify("BetterVencordPatch", "Successfully installed Vencord!")
 			}
 		} else {
-		if runtime.GOOS == "darwin" {
 			if installOpenAsar {
 				notify("Success", "Successfully installed Vencord + OpenAsar!")
 			} else {
