@@ -1,5 +1,6 @@
 # Building from Source
 If you want build BetterVencordPatch and/or its autopatcher without installing BetterVencordPatch, see the below guide.
+Make sure not to put quotes around the arguments.
 
 ## Building the Installer
 You can use these commands to build the installer (arguments explained below):
@@ -8,7 +9,7 @@ You can use these commands to build the installer (arguments explained below):
 
 These arguments can be used to customize the Vencord installer:
 - BRANCH: The Discord branch that BetterVencordPatch will patch
-    - Type: string (Do not put quotes around the values!)
+    - Type: string
     - Possible values: stable | ptb | canary
 - USE_OPEN_ASAR: If the installer will patch OpenAsar
     - Type: boolean
