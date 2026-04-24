@@ -3,7 +3,7 @@ An efficient program which lets you install Vencord without user interaction and
 Vencord doesn't automatically patch itself when Discord updates, so BetterVencordPatch offers a fix for that.
 
 ## Features
-- VencordInstaller.app can patch Vencord without any user interaction, unlike the official installer
+- BetterVencordPatch can patch Vencord without any user interaction, unlike the official installer
     - This is due to modifications made to the installer source. All references to UI in cli.go have been removed for optimization purposes.
     - **You can disable the auto-patch functionality in the installer while still being able to install Vencord without a UI.**
 - Patch Vencord (and optionally OpenAsar) automatically, even through Discord updates
