@@ -41,6 +41,8 @@ These arguments can be used to customize the Vencord installer:
     - Type: boolean
     - Possible values: true | false
 
+By default, vencordinstaller.exe should be in C:\Users\USER\AppData\Local\introvertednoob\BetterVencordPatch\ (Windows only).
+
 ## Building the Auto-patcher
 You can use these commands to build the auto-patcher (arguments explained below):
 - Windows: `go build -ldflags="-H=windowsgui -X main.branch=BRANCH" --tags avp_win -o autovencordpatch.exe`
@@ -50,6 +52,8 @@ These arguments can be used to customize the auto-patcher:
 - BRANCH: The branch of Discord that will be watched for updates
     - Type: string
     - Possible values: stable | ptb | canary
+
+By default, autovencordpatch.exe should be in C:\Users\USER\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\ (Windows only).
 
 ## Credits
 Auto-patcher created by [Aaron Wijesinghe](https://github.com/AaronWijesinghe)
