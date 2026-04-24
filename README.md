@@ -9,16 +9,47 @@ Vencord doesn't automatically patch itself when Discord updates, so BetterVencor
 - Patch Vencord (and optionally OpenAsar) automatically, even through Discord updates
 - Notifications are used to communicate success, failure, and errors
 
-## Installation
+# Installing BetterVencordPatch
 Download and run INSTALLER.exe or INSTALLER from the latest release, depending on your OS.</br>
 On macOS, you must run `chmod +x` to make the installer executable.</br>
 All the required files will be downloaded for you.
 
-## Building from Source
-**You have much more control over your installation when building from source, including the Discord branch which is patched and whether or not to send notifications on success.**</br>
+## Installing from Source
+**You have much more control over your installation when installing from source, including the Discord branch which is patched and whether or not to send notifications on success.**</br>
 All original requirements for building the official installer apply here.</br>
 Run install_[YOUR OPERATING SYSTEM].py to install BetterVencordPatch from source.</br>
-To build from source, install Python 3.x and Go 1.25.x. The dependencies will be automatically installed.
+To install from source, install Python 3.x and Go 1.25.x. The dependencies will be automatically installed.
+
+# Building from Source
+If you want build BetterVencordPatch and/or its autopatcher without installing BetterVencordPatch, see below.</br>
+To build from source, install Python 3.x and Go 1.25.x.
+Make sure not to put quotes around any arguments.
+
+## Building the Installer
+You can use these commands to build the installer (arguments explained below):
+- Windows: `go build -ldflags="-H=windowsgui -X main.branch=BRANCH -X main.patchOpenAsar=USE_OPEN_ASAR -X main.sendSuccessNotifications=SEND_SUCCESS_NOTIFICATIONS" --tags cli`
+- macOS: `go build -ldflags="-X main.branch=BRANCH -X main.patchOpenAsar=USE_OPEN_ASAR -X main.sendSuccessNotifications=SEND_SUCCESS_NOTIFICATIONS" --tags cli`
+
+These arguments can be used to customize the Vencord installer:
+- BRANCH: The Discord branch that BetterVencordPatch will patch
+    - Type: string
+    - Possible values: stable | ptb | canary
+- USE_OPEN_ASAR: If the installer will patch OpenAsar
+    - Type: boolean
+    - Possible values: true | false
+- SEND_SUCCESS_NOTIFICATIONS: If the installer will send a success notification on success
+    - Type: boolean
+    - Possible values: true | false
+
+## Building the Auto-patcher
+You can use these commands to build the auto-patcher (arguments explained below):
+- Windows: `go build -ldflags="-H=windowsgui -X main.branch=BRANCH" --tags avp_win -o autovencordpatch.exe`
+- macOS: `go build -ldflags="-X main.branch=BRANCH" --tags avp_macos -o autovencordpatch`
+
+These arguments can be used to customize the auto-patcher:
+- BRANCH: The branch of Discord that will be watched for updates
+    - Type: string
+    - Possible values: stable | ptb | canary
 
 ## Credits
 Auto-patcher created by [Aaron Wijesinghe](https://github.com/AaronWijesinghe)
