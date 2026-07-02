@@ -1,3 +1,9 @@
+### Version 0.1.0 (BetterEquicordPatch)
+- Retargeted installer to patch Equicord instead of Vencord (binaries, launchd label, README renamed accordingly)
+- Fixed build script to cross-compile per-target GOOS/GOARCH, added arm64 outputs for the installer and autopatch binaries (Windows/macOS)
+- Fixed installer self-update URL and UserAgent, which still pointed at the upstream AaronWijesinghe/BetterVencordPatch repo instead of this fork
+- Renamed autopatch launchd plist label from org.aaron.autoequicordpatch to org.koge97.autoequicordpatch
+
 ### Version 0.4.2
 - Fixed an issue where Vencord wouldn't patch when choosing to patch OpenAsar
 - Show a permission error dialog if OpenAsar can't be patched
