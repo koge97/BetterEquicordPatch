@@ -15,10 +15,10 @@ import (
 
 const ReleaseUrl = "https://api.github.com/repos/Equicord/Equicord/releases/latest"
 const ReleaseUrlFallback = ReleaseUrl
-const InstallerReleaseUrl = "https://api.github.com/repos/AaronWijesinghe/BetterVencordPatch/releases/latest"
+const InstallerReleaseUrl = "https://api.github.com/repos/koge97/BetterEquicordPatch/releases/latest"
 const InstallerReleaseUrlFallback = InstallerReleaseUrl
 
-var UserAgent = "EquicordInstaller/" + buildinfo.InstallerGitHash + " (https://github.com/AaronWijesinghe/BetterVencordPatch)"
+var UserAgent = "EquicordInstaller/" + buildinfo.InstallerGitHash + " (https://github.com/koge97/BetterEquicordPatch)"
 
 var (
 	DiscordGreen  = color.RGBA{R: 0x2D, G: 0x7C, B: 0x46, A: 0xFF}

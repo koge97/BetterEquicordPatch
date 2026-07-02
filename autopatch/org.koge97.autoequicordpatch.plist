@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>org.aaron.autoequicordpatch</string>
+    <string>org.koge97.autoequicordpatch</string>
 
     <key>ProgramArguments</key>
     <array>

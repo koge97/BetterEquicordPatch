@@ -61,8 +61,8 @@ func main() {
 	if *versionFlag {
 		fmt.Println("BetterEquicordPatch v0.4.2")
 		fmt.Println("Includes the Vencord Installer CLI (v1.4.0, modified)")
-		fmt.Println("Modified by @AaronWijesinghe to install Vencord without user interaction")
-		fmt.Println("Further modified to install Equicord instead of Vencord")
+		fmt.Println("Originally modified by @AaronWijesinghe to install Vencord without user interaction")
+		fmt.Println("Further modified by @koge97 to install Equicord instead of Vencord")
 		fmt.Println("\nCopyright (C) 2023 Vendicated and Vencord contributors")
 		fmt.Println("License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.")
 		return

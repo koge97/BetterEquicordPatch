@@ -60,4 +60,4 @@ for op in ["Windows", "Darwin"]:
     for openasar in [False, True]:
         build(openasar, op)
         build(openasar, op, arch="arm64")
-os.system("cp ../autopatch/org.aaron.autoequicordpatch.plist ../binaries/org.aaron.autoequicordpatch.plist")
+os.system("cp ../autopatch/org.koge97.autoequicordpatch.plist ../binaries/org.koge97.autoequicordpatch.plist")

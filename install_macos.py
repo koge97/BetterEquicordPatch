@@ -72,9 +72,9 @@ run_sh(mv_to_applications)
 if use_autopatch:
     print("Running auto-patch install scripts...", end=" ", flush=True)
     install = """
-    cp autopatch/org.aaron.autoequicordpatch.plist ~/Library/LaunchAgents/org.aaron.autoequicordpatch.plist
-    launchctl unload ~/Library/LaunchAgents/org.aaron.autoequicordpatch.plist > /dev/null 2>&1
-    launchctl load ~/Library/LaunchAgents/org.aaron.autoequicordpatch.plist > /dev/null 2>&1
+    cp autopatch/org.koge97.autoequicordpatch.plist ~/Library/LaunchAgents/org.koge97.autoequicordpatch.plist
+    launchctl unload ~/Library/LaunchAgents/org.koge97.autoequicordpatch.plist > /dev/null 2>&1
+    launchctl load ~/Library/LaunchAgents/org.koge97.autoequicordpatch.plist > /dev/null 2>&1
     open /Applications/EquicordInstaller.app
     """
     run_sh(install)

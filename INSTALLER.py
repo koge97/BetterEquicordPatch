@@ -63,8 +63,8 @@ for asset in rel[0]["assets"]:
 
 if platform.system() == "Darwin":
     for asset in rel[0]["assets"]:
-        if asset["name"] == "org.aaron.autoequicordpatch.plist":
-            open(f"/Users/{getpass.getuser()}/Library/LaunchAgents/org.aaron.autoequicordpatch.plist", "wb").write(requests.get(asset["browser_download_url"]).content)
+        if asset["name"] == "org.koge97.autoequicordpatch.plist":
+            open(f"/Users/{getpass.getuser()}/Library/LaunchAgents/org.koge97.autoequicordpatch.plist", "wb").write(requests.get(asset["browser_download_url"]).content)
             print(f"Successfully installed autopatch launchd plist (macOS)")
         elif asset["name"] == "autoequicordpatch" and autopatch:
             open(f"/Applications/EquicordInstaller.app/Contents/Resources/autoequicordpatch", "wb").write(requests.get(asset["browser_download_url"]).content)
