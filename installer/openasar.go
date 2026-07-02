@@ -77,7 +77,7 @@ func (di *DiscordInstall) InstallOpenAsar() error {
 
 	if err = os.Rename(asarFile.Name(), path.Join(dir, "app.asar.backup")); err != nil {
 		if errors.Is(err, os.ErrPermission) {
-			return errors.New("The App Management/Full Disk Access permission must be granted to allow VencordInstaller to patch OpenAsar. Make sure Discord isn't running!")
+			return errors.New("The App Management/Full Disk Access permission must be granted to allow EquicordInstaller to patch OpenAsar. Make sure Discord isn't running!")
 		}
 		return err
 	}

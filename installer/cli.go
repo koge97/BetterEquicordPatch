@@ -49,9 +49,9 @@ func main() {
 	flag.Bool("debug", false, "Enable debug info")
 
 	var versionFlag = flag.Bool("version", false, "View the program version")
-	var installFlag = flag.Bool("install", !isTrue(patchOpenAsar), "Install Vencord")
-	var updateFlag = flag.Bool("repair", false, "Repair Vencord")
-	var uninstallFlag = flag.Bool("uninstall", false, "Uninstall Vencord")
+	var installFlag = flag.Bool("install", !isTrue(patchOpenAsar), "Install Equicord")
+	var updateFlag = flag.Bool("repair", false, "Repair Equicord")
+	var uninstallFlag = flag.Bool("uninstall", false, "Uninstall Equicord")
 	var installOpenAsarFlag = flag.Bool("install-openasar", isTrue(patchOpenAsar), "Install OpenAsar")
 	var uninstallOpenAsarFlag = flag.Bool("uninstall-openasar", false, "Uninstall OpenAsar")
 	var locationFlag = flag.String("location", "", "The location of the Discord install to modify")
@@ -59,9 +59,10 @@ func main() {
 	flag.Parse()
 
 	if *versionFlag {
-		fmt.Println("BetterVencordPatch v0.4.2")
+		fmt.Println("BetterEquicordPatch v0.4.2")
 		fmt.Println("Includes the Vencord Installer CLI (v1.4.0, modified)")
 		fmt.Println("Modified by @AaronWijesinghe to install Vencord without user interaction")
+		fmt.Println("Further modified to install Equicord instead of Vencord")
 		fmt.Println("\nCopyright (C) 2023 Vendicated and Vencord contributors")
 		fmt.Println("License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.")
 		return
@@ -90,7 +91,7 @@ func main() {
 	} else if uninstall {
 		errSilent = PromptDiscord("unpatch", *locationFlag, *branchFlag).unpatch()
 	} else if update {
-		Log.Info("Downloading latest Vencord files...")
+		Log.Info("Downloading latest Equicord files...")
 		err := installLatestBuilds()
 		Log.Info("Done!")
 		if err == nil {
@@ -132,15 +133,15 @@ func exitSuccess(installOpenAsar bool) {
 	if isTrue(sendSuccessNotifications) == true {
 		if runtime.GOOS == "darwin" {
 			if installOpenAsar {
-				notify("BetterVencordPatch", "Successfully installed Vencord + OpenAsar!")
+				notify("BetterEquicordPatch", "Successfully installed Equicord + OpenAsar!")
 			} else {
-				notify("BetterVencordPatch", "Successfully installed Vencord!")
+				notify("BetterEquicordPatch", "Successfully installed Equicord!")
 			}
 		} else {
 			if installOpenAsar {
-				notify("Success", "Successfully installed Vencord + OpenAsar!")
+				notify("Success", "Successfully installed Equicord + OpenAsar!")
 			} else {
-				notify("Success", "Successfully installed Vencord!")
+				notify("Success", "Successfully installed Equicord!")
 			}
 		}
 	}
@@ -149,14 +150,14 @@ func exitSuccess(installOpenAsar bool) {
 }
 
 func exitFailure(reason ...string) {
-	displayed_reason := "Failed to patch Vencord"
+	displayed_reason := "Failed to patch Equicord"
 	if len(reason) > 0 {
-		displayed_reason = "Failed to patch Vencord: " + reason[0]
+		displayed_reason = "Failed to patch Equicord: " + reason[0]
 	}
 	color.HiRed("Failed!")
 
 	if runtime.GOOS == "darwin" {
-		notify("BetterVencordPatch", displayed_reason)
+		notify("BetterEquicordPatch", displayed_reason)
 	} else {
 		notify("An error has occured.", displayed_reason)
 	}
@@ -182,5 +183,5 @@ func HandleScuffedInstall() {
 	fmt.Println("Hold on!")
 	fmt.Println("You have a broken Discord install.")
 	fmt.Println("Please reinstall Discord before proceeding!")
-	fmt.Println("Otherwise, Vencord will likely not work.")
+	fmt.Println("Otherwise, Equicord will likely not work.")
 }

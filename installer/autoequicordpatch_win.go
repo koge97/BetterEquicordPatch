@@ -26,7 +26,7 @@ var suffixes = map[string]string{
 var branch = "stable"
 
 func runInstaller() {
-	cmd := exec.Command(filepath.Join(os.Getenv("LOCALAPPDATA"), "bettervencordpatch/vencordinstaller.exe"))
+	cmd := exec.Command(filepath.Join(os.Getenv("LOCALAPPDATA"), "betterequicordpatch/equicordinstaller.exe"))
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		HideWindow:    true,
 		CreationFlags: windows.CREATE_NO_WINDOW,
@@ -38,7 +38,7 @@ func runInstaller() {
 }
 
 func killDiscord() {
-	cmd := exec.Command("C:\\Windows\\System32\\taskkill.exe", "/f", "/im", "bettervencordpatch/vencordinstaller.exe")
+	cmd := exec.Command("C:\\Windows\\System32\\taskkill.exe", "/f", "/im", "betterequicordpatch/equicordinstaller.exe")
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		HideWindow:    true,
 		CreationFlags: windows.CREATE_NO_WINDOW,
@@ -89,7 +89,7 @@ func main() {
 				if event.Op&fsnotify.Create == fsnotify.Create || event.Op&fsnotify.Write == fsnotify.Write || event.Op&fsnotify.Remove == fsnotify.Remove {
 					if time.Since(lastUpdate) > 30*time.Second {
 						lastUpdate = time.Now()
-						fmt.Println("[" + time.Now().Format("2006-01-02 15:04:05") + "] Icon update detected, patching Vencord in 10s...")
+						fmt.Println("[" + time.Now().Format("2006-01-02 15:04:05") + "] Icon update detected, patching Equicord in 10s...")
 						time.Sleep(time.Second * 10)
 						fmt.Println("[" + time.Now().Format("2006-01-02 15:04:05") + "] Discord has (likely) finished updating, re-opening Discord...")
 						killDiscord()

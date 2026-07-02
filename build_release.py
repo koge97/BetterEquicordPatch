@@ -23,17 +23,17 @@ def build(openasar, op):
     CGO_ENABLED=0{" GOOS=windows GOARCH=amd64 " if op == "Windows" else " "}go build -ldflags=\"{"-H=windowsgui " if op == "Windows" else ""}-X main.branch={branch} -X main.patchOpenAsar={str(openasar).lower()} -X main.sendSuccessNotifications={str(send_success_notifications).lower()}\" --tags cli
     """
     build_vi_darwin = """
-    mkdir -p VencordInstaller.app/Contents/MacOS
-    mkdir -p VencordInstaller.app/Contents/Resources
-    cp macos/Info.plist VencordInstaller.app/Contents/Info.plist
-    mv VencordInstaller VencordInstaller.app/Contents/MacOS/VencordInstaller
-    cp macos/icon.icns VencordInstaller.app/Contents/Resources/icon.icns
-    rm -rf ../VencordInstaller.app
+    mkdir -p EquicordInstaller.app/Contents/MacOS
+    mkdir -p EquicordInstaller.app/Contents/Resources
+    cp macos/Info.plist EquicordInstaller.app/Contents/Info.plist
+    mv EquicordInstaller EquicordInstaller.app/Contents/MacOS/EquicordInstaller
+    cp macos/icon.icns EquicordInstaller.app/Contents/Resources/icon.icns
+    rm -rf ../EquicordInstaller.app
     """
     run_sh(build_vi)
     if op == "Darwin":
         run_sh(build_vi_darwin)
-    os.system(f"mv VencordInstaller{suffix} ../binaries/VencordInstaller-{"no_" if not openasar else ""}openasar{suffix}")
+    os.system(f"mv EquicordInstaller{suffix} ../binaries/EquicordInstaller-{"no_" if not openasar else ""}openasar{suffix}")
 
 clear()
 if os.path.exists("./binaries/"):
@@ -43,14 +43,14 @@ os.mkdir("./binaries/")
 os.chdir("./installer/")
 build_avp = f"""
 go mod tidy
-CGO_ENABLED=0 go build -o autovencordpatch --tags avp_macos
-CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -ldflags=\"-H=windowsgui\" -o autovencordpatch.exe --tags avp_win
+CGO_ENABLED=0 go build -o autoequicordpatch --tags avp_macos
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -ldflags=\"-H=windowsgui\" -o autoequicordpatch.exe --tags avp_win
 """
 run_sh(build_avp)
-os.rename("./autovencordpatch", "../binaries/autovencordpatch")
-os.rename("./autovencordpatch.exe", "../binaries/autovencordpatch.exe")
+os.rename("./autoequicordpatch", "../binaries/autoequicordpatch")
+os.rename("./autoequicordpatch.exe", "../binaries/autoequicordpatch.exe")
 
 for op in ["Windows", "Darwin"]:
     for openasar in [False, True]:
         build(openasar, op)
-os.system("cp ../autopatch/org.aaron.autovencordpatch.plist ../binaries/org.aaron.autovencordpatch.plist")
+os.system("cp ../autopatch/org.aaron.autoequicordpatch.plist ../binaries/org.aaron.autoequicordpatch.plist")

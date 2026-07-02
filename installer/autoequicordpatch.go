@@ -22,12 +22,12 @@ var discordJSON = "/Applications/" + apps[branch] + "/Contents/Resources/build_i
 var discordASAR = "/Applications/" + apps[branch] + "/Contents/Resources/app.asar"
 
 const (
-	vencordApp    = "/Applications/VencordInstaller.app"
+	equicordApp   = "/Applications/EquicordInstaller.app"
 	checkInterval = 1 * time.Second
 )
 
 func runInstaller() {
-	cmd := exec.Command("open", vencordApp)
+	cmd := exec.Command("open", equicordApp)
 	err := cmd.Start()
 	if err != nil {
 		fmt.Println("["+time.Now().Format("2006-01-02 15:04:05")+"] Failed to run installer:", err)

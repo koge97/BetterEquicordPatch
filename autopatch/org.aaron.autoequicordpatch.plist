@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>org.aaron.autovencordpatch</string>
+    <string>org.aaron.autoequicordpatch</string>
 
     <key>ProgramArguments</key>
     <array>
-        <string>/Applications/VencordInstaller.app/Contents/Resources/autovencordpatch</string>
+        <string>/Applications/EquicordInstaller.app/Contents/Resources/autoequicordpatch</string>
     </array>
 
     <key>RunAtLoad</key>
@@ -15,8 +15,8 @@
     <key>KeepAlive</key>
     <true/>
     <key>StandardOutPath</key>
-    <string>/tmp/autovencordpatch.log</string>
+    <string>/tmp/autoequicordpatch.log</string>
     <key>StandardErrorPath</key>
-    <string>/tmp/autovencordpatch.log</string>
+    <string>/tmp/autoequicordpatch.log</string>
 </dict>
 </plist>

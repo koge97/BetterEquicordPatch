@@ -22,15 +22,15 @@ var FilesDirErr error
 var Patcher string
 
 func init() {
-	if dir := os.Getenv("VENCORD_USER_DATA_DIR"); dir != "" {
-		Log.Debug("Using VENCORD_USER_DATA_DIR")
+	if dir := os.Getenv("EQUICORD_USER_DATA_DIR"); dir != "" {
+		Log.Debug("Using EQUICORD_USER_DATA_DIR")
 		BaseDir = dir
 	} else if dir = os.Getenv("DISCORD_USER_DATA_DIR"); dir != "" {
-		Log.Debug("Using DISCORD_USER_DATA_DIR/../VencordData")
-		BaseDir = path.Join(dir, "..", "VencordData")
+		Log.Debug("Using DISCORD_USER_DATA_DIR/../EquicordData")
+		BaseDir = path.Join(dir, "..", "EquicordData")
 	} else {
 		Log.Debug("Using UserConfig")
-		BaseDir = appdir.New("Vencord").UserConfig()
+		BaseDir = appdir.New("Equicord").UserConfig()
 	}
 	FilesDir = path.Join(BaseDir, "dist")
 	if !ExistsFile(FilesDir) {
@@ -114,7 +114,7 @@ func (di *DiscordInstall) patch() error {
 		Log.Info(di.path, "is already patched. Unpatching first...")
 		if err := di.unpatch(); err != nil {
 			if errors.Is(err, os.ErrPermission) {
-				return errors.New("The App Management/Full Disk Access permission must be granted to allow VencordInstaller to patch Vencord. Make sure Discord isn't running!")
+				return errors.New("The App Management/Full Disk Access permission must be granted to allow EquicordInstaller to patch Equicord. Make sure Discord isn't running!")
 			}
 			return errors.New("patch: Failed to unpatch already patched install '" + di.path + "':\n" + err.Error())
 		}
@@ -122,7 +122,7 @@ func (di *DiscordInstall) patch() error {
 
 	if err := patchAppAsar(path.Join(di.appPath, ".."), di.isSystemElectron); err != nil {
 		if errors.Is(err, os.ErrPermission) {
-			return errors.New("The App Management/Full Disk Access permission must be granted to allow VencordInstaller to patch Vencord. Make sure Discord isn't running!")
+			return errors.New("The App Management/Full Disk Access permission must be granted to allow EquicordInstaller to patch Equicord. Make sure Discord isn't running!")
 		} else {
 			return err
 		}

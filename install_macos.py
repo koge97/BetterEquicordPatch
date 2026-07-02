@@ -11,8 +11,8 @@ def run_sh(sh):
         os.system(f"{cmd}")
 
 clear()
-print("[BetterVencordPatch Installer (macOS)]")
-branch = input("Enter the branch of Discord to be patched by Vencord (stable, ptb, canary): ")
+print("[BetterEquicordPatch Installer (macOS)]")
+branch = input("Enter the branch of Discord to be patched by Equicord (stable, ptb, canary): ")
 if branch not in ["stable", "ptb", "canary"]:
     input("This branch of Discord doesn't exist. ")
     exit()
@@ -21,7 +21,7 @@ use_autopatch = input("Patch this branch of Discord through updates (y/N)? ").lo
 send_success_notifications = input("Send notifications on success (y/N)? ").lower().strip() == "y"
 
 clear()
-print("[Installing BetterVencordPatch]")
+print("[Installing BetterEquicordPatch]")
 print(f"Installing with preferences: branch='{branch}', openasar={openasar}, use_autopatch={use_autopatch}, send_success_notifications={send_success_notifications}")
 print("\nRunning pre-install checks...", end=" ", flush=True)
 if platform.system() != "Darwin":
@@ -39,15 +39,15 @@ os.chdir("./installer/")
 build_vi = f"""
 go mod tidy
 CGO_ENABLED=0 go build -ldflags=\"-X main.branch={branch} -X main.patchOpenAsar={str(openasar).lower()} -X main.sendSuccessNotifications={str(send_success_notifications).lower()}\" --tags cli
-mkdir -p VencordInstaller.app/Contents/MacOS
-mkdir -p VencordInstaller.app/Contents/Resources
-cp macos/Info.plist VencordInstaller.app/Contents/Info.plist
-mv VencordInstaller VencordInstaller.app/Contents/MacOS/VencordInstaller
-cp macos/icon.icns VencordInstaller.app/Contents/Resources/icon.icns
-rm -rf ../VencordInstaller.app
-mv VencordInstaller.app ../VencordInstaller.app
+mkdir -p EquicordInstaller.app/Contents/MacOS
+mkdir -p EquicordInstaller.app/Contents/Resources
+cp macos/Info.plist EquicordInstaller.app/Contents/Info.plist
+mv EquicordInstaller EquicordInstaller.app/Contents/MacOS/EquicordInstaller
+cp macos/icon.icns EquicordInstaller.app/Contents/Resources/icon.icns
+rm -rf ../EquicordInstaller.app
+mv EquicordInstaller.app ../EquicordInstaller.app
 """
-print("Building VencordInstaller.app...", end=" ", flush=True)
+print("Building EquicordInstaller.app...", end=" ", flush=True)
 run_sh(build_vi)
 print("done")
 
@@ -55,29 +55,29 @@ if use_autopatch:
     print("Building auto-patch binary...", end=" ", flush=True)
     build_avp = f"""
     go mod tidy
-    CGO_ENABLED=0 go build -ldflags=\"-X main.branch={branch}\" --tags avp_macos -o autovencordpatch
-    chmod +x autovencordpatch
-    mv autovencordpatch ../VencordInstaller.app/Contents/Resources/autovencordpatch
+    CGO_ENABLED=0 go build -ldflags=\"-X main.branch={branch}\" --tags avp_macos -o autoequicordpatch
+    chmod +x autoequicordpatch
+    mv autoequicordpatch ../EquicordInstaller.app/Contents/Resources/autoequicordpatch
     """
     run_sh(build_avp)
     print("done")
 
 os.chdir("../")
 mv_to_applications = """
-rm -rf /Applications/VencordInstaller.app
-mv VencordInstaller.app /Applications/VencordInstaller.app
+rm -rf /Applications/EquicordInstaller.app
+mv EquicordInstaller.app /Applications/EquicordInstaller.app
 """
 run_sh(mv_to_applications)
 
 if use_autopatch:
     print("Running auto-patch install scripts...", end=" ", flush=True)
     install = """
-    cp autopatch/org.aaron.autovencordpatch.plist ~/Library/LaunchAgents/org.aaron.autovencordpatch.plist
-    launchctl unload ~/Library/LaunchAgents/org.aaron.autovencordpatch.plist > /dev/null 2>&1
-    launchctl load ~/Library/LaunchAgents/org.aaron.autovencordpatch.plist > /dev/null 2>&1
-    open /Applications/VencordInstaller.app
+    cp autopatch/org.aaron.autoequicordpatch.plist ~/Library/LaunchAgents/org.aaron.autoequicordpatch.plist
+    launchctl unload ~/Library/LaunchAgents/org.aaron.autoequicordpatch.plist > /dev/null 2>&1
+    launchctl load ~/Library/LaunchAgents/org.aaron.autoequicordpatch.plist > /dev/null 2>&1
+    open /Applications/EquicordInstaller.app
     """
     run_sh(install)
     print("done")
 
-input("\nSuccessfully installed BetterVencordPatch! ")
+input("\nSuccessfully installed BetterEquicordPatch! ")
